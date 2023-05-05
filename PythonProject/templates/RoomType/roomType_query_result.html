@@ -1,0 +1,48 @@
+{% include 'check_logstate.html' %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/roomType.css' %}" />
+
+{% csrf_token %}
+<div id="roomType_manage"></div>
+<div id="roomType_manage_tool" style="padding:5px;">
+	<div style="margin-bottom:5px;">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit-new" plain="true" onclick="roomType_manage_tool.edit();">修改</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-delete-new" plain="true" onclick="roomType_manage_tool.remove();">删除</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-reload" plain="true"  onclick="roomType_manage_tool.reload();">刷新</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="roomType_manage_tool.redo();">取消选择</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-export" plain="true" onclick="roomType_manage_tool.exportExcel();">导出到excel</a>
+	</div>
+	<div style="padding:0 0 0 7px;color:#333;">
+		<form id="roomTypeQueryForm" method="get">
+		</form>	
+	</div>
+</div>
+
+<div id="roomTypeEditDiv">
+	<form id="roomTypeEditForm" enctype="multipart/form-data"  method="post">
+        {% csrf_token %}
+		<div>
+			<span class="label">类型id:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="roomType_roomTypeId_edit" name="roomType.roomTypeId" style="width:200px" />
+			</span>
+		</div>
+		<div>
+			<span class="label">房间类型:</span>
+			<span class="inputControl">
+				<input class="textbox" type="text" id="roomType_roomTypeName_edit" name="roomType.roomTypeName" style="width:200px" />
+
+			</span>
+
+		</div>
+		<div>
+			<span class="label">类型介绍:</span>
+			<span class="inputControl">
+				<textarea name="roomType.roomTypeDesc" id="roomType_roomTypeDesc_edit" type="text/plain"   style="width:100%;height:500px;"></textarea>
+
+			</span>
+
+		</div>
+	</form>
+</div>
+<script type="text/javascript" src="{% static 'js/RoomType/roomType_manage.js' %}"></script>
